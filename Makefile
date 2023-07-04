@@ -21,3 +21,13 @@ help: build
 
 clean:
 	rm -f ./meteo-challenge
+	rm -f ./meteo-challenge.zip
+
+cleanAll: clean
+	rm -rf vendor
+
+zip:
+	make clean
+	cd ..; \
+	zip -r meteo-challenge.zip meteo-challenge/Makefile meteo-challenge/README.md meteo-challenge/cmd meteo-challenge/internal meteo-challenge/views meteo-challenge/go.mod meteo-challenge/go.sum; \
+	mv meteo-challenge.zip meteo-challenge/
