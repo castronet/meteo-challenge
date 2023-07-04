@@ -1,6 +1,6 @@
 # README
 
-This file will explain the choosed challange and how to run it.
+This file will explain the chose challenge and how to run it.
 
 ## How to run the code
 
@@ -14,11 +14,11 @@ If you need more information try with
 make help
 ```
 
-## Documentetion
+## Documentation
 
 I decided to add inline documentation to try to clarify the code.
 
-I also tryed to choose a good name for each function.
+I also tried to choose a good name for each function.
 
 ## Testing
 
