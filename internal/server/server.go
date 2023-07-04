@@ -4,9 +4,6 @@ import (
 	// To format text
 	"fmt"
 
-	// For string conversions
-	"strconv"
-
 	// Http server
 	"net/http"
 
@@ -16,10 +13,6 @@ import (
 
 	// For rendering web templates
 	"github.com/foolin/goview"
-)
-
-const (
-	defaultPort = 8080
 )
 
 // Struct to represent the server
@@ -39,39 +32,31 @@ func New() *Server {
 	// Configure http templating system
 	gvConfig := goview.DefaultConfig
 	gvConfig.DisableCache = true // goview disable cache (used for testing purposes)
-	// gvConfig.Funcs = template.FuncMap{"avail": avail}
 	goview.Use(goview.New(gvConfig))
 
 	return s
 }
 
 // Run the server with the given address and optionally port
-func (s *Server) Run(address string, args []string) {
-	// Set default port value
-	port := defaultPort
-
-	// If given port exists, try to set as server port
-	if len(args) > 0 {
-		convertedPort, err := strconv.Atoi(args[0])
-		if err == nil {
-			port = convertedPort
-		}
-	}
-
-	// Define server address
-	s.address = fmt.Sprintf("%s:%d", address, port)
+func (s *Server) Run(address string, port string) {
+	// Save server address on Server struct
+	s.address = fmt.Sprintf("%s:%s", address, port)
 
 	// Run server
-	fmt.Printf("Listening on address %s port %d", address, port)
-	err := http.ListenAndServe(fmt.Sprintf("%s:%d", address, port), s.router)
+	fmt.Printf("Listening on address %s port %s\n", address, port)
+	fmt.Printf("Open your browser to the following URL: http://%s:%s/\n", address, port)
+
+	err := http.ListenAndServe(fmt.Sprintf("%s:%s", address, port), s.router)
 	if err != nil {
-		// Panic error
+		// If the http server could not start return and exit application
 		fmt.Println("Error while starting server")
 		fmt.Println(err)
 		return
 	}
 }
 
+// Helper function to define HTTP Routes
+// For this test we just used GET method requests, but is possible to define POST, PUT, DELETE
 func (s *Server) defineRoutes() *chi.Mux {
 	r := chi.NewRouter()
 
@@ -85,5 +70,6 @@ func (s *Server) defineRoutes() *chi.Mux {
 	r.Get("/", s.indexHandler)
 	r.Get("/temperature/{lat}/{lon}", s.temperatureHandler)
 
+	// Returns the router to be able to chain functions to define different routes
 	return r
 }

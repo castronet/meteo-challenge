@@ -1,9 +1,9 @@
 {{ define "content" }}
 <h1>How to use this service</h1>
 <ul>
-  <li>Get temperature forecast: http://{{ .serverURL }}/temperature/lat/lon 
+  <li>Get temperature forecast: http://{{ .serverURL }}/temperature/{lat}/{lon}
     <br />
-    Example of Barcelona: <a href="http://{{ .serverURL }}/temperature/41.3888/2.159">http://{{ .serverURL }}/temperature/41.3888/2.159</a>
+    Example of Barcelona call: <a href="http://{{ .serverURL }}/temperature/41.3888/2.159">http://{{ .serverURL }}/temperature/41.3888/2.159</a>
   </li>
 </ul>
 {{ end }}
