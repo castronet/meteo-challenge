@@ -1,0 +1,21 @@
+{{ define "content" }}
+<a href="/">&lt;&lt; back</a>
+<h1>Temperature</h1>
+<table>
+  <thead>
+    <tr>
+      <td><b>Hour</b></td>
+      <td><b>Temperature</b></td>
+    </tr>
+  </thead>
+  <tbody>
+  {{ $units := .data.HourlyUnits.Temperature2M }}
+  {{ range $k, $v := .data.Hourly.Time }}
+  <tr>
+    <td>{{ $v }}</td>
+    <td>{{ index $.data.Hourly.Temperature2M $k }} {{ $units }}</td>
+  </tr>
+  {{ end }}
+  </tbody>
+</table>
+{{ end }}
