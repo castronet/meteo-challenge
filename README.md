@@ -23,7 +23,7 @@ If you need more information try with
 make help
 ```
 
-## About testing
+## About testing
 
 I had to admit two things:
 - The first one is that 2 hours are not a lot of time.
@@ -32,7 +32,7 @@ I had to admit two things:
 I want to add that as a DevOps/SRE for me the tests are one of the most important things because they let me know before deploy the code on production (or other environments) if the code is broken or all functions works as previous versions.
 Tests also could be executed automatically on an CI/CD pipeline just after build step and discard the branch/deployment if the tests fail.
 
-## Conclusions
+## Conclusions
 
 About documentation I decided to add inline documentation to try to clarify the code. I also tried to choose a good name for each function. There are better documentation options and/or I could add some kind of tags on functions documentation to be able to generate documentation automatically with i.e. Gendoc/Swagger...
 
